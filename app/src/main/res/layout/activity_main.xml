@@ -6,13 +6,92 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/imgLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.050000012"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="My Library"
+        app:layout_constraintEnd_toEndOf="@+id/imgLogo"
+        app:layout_constraintStart_toStartOf="@+id/imgLogo"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogo" />
+
+    <Button
+        android:id="@+id/buttonAllBooks"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Show all books"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/textName"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/textName"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+    <Button
+        android:id="@+id/buttonCurrentlyReading"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Currently reading"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/buttonAllBooks"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="@+id/buttonAllBooks"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAllBooks" />
+
+    <Button
+        android:id="@+id/buttonAllreadyRead"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Allready read books"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/buttonCurrentlyReading"
+        app:layout_constraintStart_toStartOf="@+id/buttonCurrentlyReading"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCurrentlyReading" />
+
+    <Button
+        android:id="@+id/buttonWantToReadBooks"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Readlist"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/buttonAllreadyRead"
+        app:layout_constraintStart_toStartOf="@+id/buttonAllreadyRead"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAllreadyRead" />
+
+    <Button
+        android:id="@+id/buttonFavorite"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Show your favorites"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/buttonWantToReadBooks"
+        app:layout_constraintStart_toStartOf="@+id/buttonWantToReadBooks"
+        app:layout_constraintTop_toBottomOf="@+id/buttonWantToReadBooks" />
+
+    <Button
+        android:id="@+id/buttonAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:text="About"
+        app:layout_constraintEnd_toEndOf="@+id/buttonFavorite"
+        app:layout_constraintStart_toStartOf="@+id/buttonFavorite"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFavorite" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
