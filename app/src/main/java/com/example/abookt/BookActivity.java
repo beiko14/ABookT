@@ -2,6 +2,7 @@ package com.example.abookt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 public class BookActivity extends AppCompatActivity {
+
+    public static final String BOOK_ID_KEY = "bookId";
 
     private ImageView imageView;
     private Button buttonAddToCurrentlyReading, buttonAddToWantToRead, buttonAddToAlreadyRead, buttonAddToFavorites;
@@ -23,17 +26,20 @@ public class BookActivity extends AppCompatActivity {
         initViews();
 
         //TODO: get data from recycler view here
-        BookModel book = new BookModel(0, "Harry Potter", "J. K. Rowling", 336,
-                "https://assets.thalia.media/img/artikel/63be06f8134196a5fca3e5320017be22650d4f64-00-00.jpeg",
-                "Zaubererbuch", "Dies ist ein Buch über einen Zauberer-Jungen sjdflkas jdfljasoi fsaoi jfsaj foijsaoi fjsoiaj foisajf oijsiof jsaoij foisaj foijsf oijs foijsoi fjsoi fjosij f" +
-                "iasjd fdoiasj foisaj fiojsaoif jasoi fdjaoisjf ojsafdoi jsoif jsoid fjoisj foisj foisj foi js foijsoi fjsoi fjsoi fjosij fois jfoisaj f oi sjfio jsf sj fd iojsio dfjsa fd" +
-                "oisj dfoisaj foiasj foi jsf oijsoif jsoif jsio fjios fjios jdfiosj fiosj foij sfoij sfiojsoif jsaio fjiosaj fdiosa jfoisajf oisjf iosajf oijsafoi sai fdasfd j" +
-                "aosid jfoiasj fdoisj foiasj foiasj foisj foiasj foisjf ois fois fdjoias dfjois dfoisaj dfoi sadfoi sad foisdf oisadoif jsoidf jsoiadf joisadjf oias fdoi asdf" +
-                "osiad fjoisa djfioasd jfoisa jfoisa jfoias fjdioasj foias jfioas jfdoisa fdjiosa fiosadf jiosad jfoisa dfdiosad fjiosadf ioasd foiasd jfioas dfiosa dfioas dfio asf" +
-                "sjd foiasj dfiosaiof siao jfioas j foijsaoi fjsaoi fjios jfoisj foiasfoi saof ijiosj fois jf iosj f iosjafio j soif jsiof jiosj foisa f io jsiof sio fios fois jfoi sajdf" +
-                "oias jdfoisa jfio jsafio jsoif jsoif jios fjois fjois fjoisfj oisj fois jfoisaj foisa jfoisa jfoisaj foisa jfoisa foisa foisa foisa jfoi sfio safiosjaf io safiosaf");
+//        BookModel book = new BookModel(0, "Harry Potter", "J. K. Rowling", 336,
+//                "https://assets.thalia.media/img/artikel/63be06f8134196a5fca3e5320017be22650d4f64-00-00.jpeg",
+//                "Zaubererbuch", "Dies ist ein Buch über einen Zauberer-Jungen");
 
-        setData(book);
+        Intent intent = getIntent();
+        if(intent != null){
+            int bookId = intent.getIntExtra(BOOK_ID_KEY, -1);
+            if(bookId != -1){
+                BookModel incomingBook = Utils.getInstance().getBookById(bookId);
+                if(incomingBook != null){
+                    setData(incomingBook);
+                }
+            }
+        }
     }
 
     private void setData(BookModel book){
