@@ -1,17 +1,20 @@
 package com.example.abookt;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionManager;
 
 import com.bumptech.glide.Glide;
 
@@ -38,6 +41,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
         return holder;
     }
 
+    // Logic here, sir!
     @Override
     public void onBindViewHolder(@NonNull @org.jetbrains.annotations.NotNull BookRecViewAdapter.ViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder: Called");
@@ -50,9 +54,23 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
         holder.cardViewParent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "Clicked on " + books.get(position).getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, BookActivity.class);
+                mContext.startActivity(intent);
             }
         });
+
+        holder.textAuthor.setText(books.get(position).getAuthor());
+        holder.textShortDescription.setText(books.get(position).getShortDesc());
+
+        if(books.get(position).isExpanded()){
+            TransitionManager.beginDelayedTransition(holder.cardViewParent);
+            holder.expandedRelLayout.setVisibility(View.VISIBLE);
+            holder.buttonDownArrow.setVisibility(View.GONE);
+        } else{
+            TransitionManager.beginDelayedTransition(holder.cardViewParent);
+            holder.expandedRelLayout.setVisibility(View.GONE);
+            holder.buttonDownArrow.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -65,15 +83,55 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
         notifyDataSetChanged();
     }
 
+    // Logic here, sir!
     public class ViewHolder extends RecyclerView.ViewHolder{
         private CardView cardViewParent;
-        private ImageView imgBook;
-        private TextView textBookName;
+        private ImageView imgBook, buttonDownArrow, buttonUpArrow;
+        private TextView textBookName, textAuthor, textShortDescription;
+        private RelativeLayout collapsedRelLayout, expandedRelLayout;
+
         public ViewHolder(@NonNull @org.jetbrains.annotations.NotNull View itemView) {
             super(itemView);
             cardViewParent = itemView.findViewById(R.id.cardViewParent);
             imgBook = itemView.findViewById(R.id.imgBook);
             textBookName = itemView.findViewById(R.id.textBookName);
+
+            buttonDownArrow = itemView.findViewById(R.id.buttonDownArrow);
+            buttonUpArrow = itemView.findViewById(R.id.buttonUpArrow);
+
+            textAuthor = itemView.findViewById(R.id.textAuthor);
+            textShortDescription = itemView.findViewById(R.id.textShortDescription);
+
+            collapsedRelLayout = itemView.findViewById(R.id.collapsedRelLayout);
+            expandedRelLayout = itemView.findViewById(R.id.expandedRelLayout);
+
+            buttonDownArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    BookModel book = books.get(getAdapterPosition());
+                    book.setExpanded(!book.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
+
+            buttonUpArrow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    BookModel book = books.get(getAdapterPosition());
+                    book.setExpanded(!book.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
+                }
+            });
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
