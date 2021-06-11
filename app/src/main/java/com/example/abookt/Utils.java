@@ -102,4 +102,20 @@ public class Utils {
     public boolean addToCurrentlyReading(BookModel incomingBook) {
         return currentlyReading.add(incomingBook);
     }
+
+    public boolean removeFromAlreadyReadBooks(BookModel book){
+        return alreadyReadBooks.remove(book);
+    }
+
+    public boolean removeFromCurrentlyReading(BookModel book){
+        return currentlyReading.remove(book);
+    }
+
+    public boolean removeFromFavoriteBooks(BookModel book){
+        return favoriteBooks.remove(book);
+    }
+
+    public boolean removeFromReadList(BookModel book){
+        return readList.remove(book);
+    }
 }

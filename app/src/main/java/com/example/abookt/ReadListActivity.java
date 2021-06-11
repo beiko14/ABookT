@@ -17,7 +17,7 @@ public class ReadListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_read_list);
 
         bookRecView = findViewById(R.id.bookRecView);
-        BookRecViewAdapter adapter = new BookRecViewAdapter(this);
+        BookRecViewAdapter adapter = new BookRecViewAdapter(this, "ReadList");
         bookRecView.setAdapter(adapter);
         bookRecView.setLayoutManager(new LinearLayoutManager(this));
 
