@@ -86,4 +86,20 @@ public class Utils {
 
         return null;
     }
+
+    public boolean addToAlreadyRead(BookModel book){
+        return alreadyReadBooks.add(book);
+    }
+
+    public boolean addToReadList(BookModel book){
+        return readList.add(book);
+    }
+
+    public boolean addToFavorite(BookModel incomingBook) {
+        return favoriteBooks.add(incomingBook);
+    }
+
+    public boolean addToCurrentlyReading(BookModel incomingBook) {
+        return currentlyReading.add(incomingBook);
+    }
 }

@@ -19,10 +19,45 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
 
+        // initialize the Lists to avoid possible null-pointer exceptions if user clicks AlreadyReadBooks first
+        Utils.getInstance();
+
         buttonAllBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AllBooksActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonAllreadyRead.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AlreadyReadBooksActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonWantToReadBooks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ReadListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, FavoriteBooksActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonCurrentlyReading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CurrentlyReadingActivity.class);
                 startActivity(intent);
             }
         });
